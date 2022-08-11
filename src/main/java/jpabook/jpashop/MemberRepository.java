@@ -8,6 +8,11 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class MemberRepository {
 
+    /**
+     * JPA Anno. Repository Class
+     * Control using EntityManger em
+     */
+
     @PersistenceContext
     private EntityManager em;
 

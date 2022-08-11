@@ -15,6 +15,7 @@ public class Member {
      * Member Class Info
      * JPA Entity
      * private id, username
+     * H2 Table Member
      */
 
     @Id @GeneratedValue
