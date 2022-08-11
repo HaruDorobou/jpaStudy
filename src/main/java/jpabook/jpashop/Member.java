@@ -11,6 +11,12 @@ import javax.persistence.Id;
 @Getter @Setter
 public class Member {
 
+    /**
+     * Member Class Info
+     * JPA Entity
+     * private id, username
+     */
+
     @Id @GeneratedValue
     private Long id;
     private String username;
