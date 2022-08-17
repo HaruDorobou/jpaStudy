@@ -1,12 +1,15 @@
 package jpabook.jpashop.domain;
 
 import jpabook.jpashop.domain.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter @Setter
 public class Category {
 
     @Id @GeneratedValue
@@ -29,7 +32,7 @@ public class Category {
      */
     private List<Item> items = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
@@ -39,6 +42,16 @@ public class Category {
      * 같은 Entity에 관해서 Self로 양방향 join을 건 상태
      * parent <-> child
      */
+
+    /** <==연관관계 편입 메소드==>
+     * 양방향 연관관계가 있을 경우 다 해줘야 함
+     * 양 사이드를 원자적으로 한 코드로 해주는 메소드
+     * 연관의 주인은 설정은 핵심적으로 Control하는 Entity에다가
+     */
+    public void addChildCategory(Category child) {
+        this.child.add(child);
+        child.setParent(this);
+    }
 
     // END LINE
 }

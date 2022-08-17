@@ -25,14 +25,14 @@ public class Order {
      * つまり 이 두 Table 間, 主人은 Orders임
      */
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
@@ -40,6 +40,26 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status; // Enum [ORDER, CANCEL]
+
+    /** <==연관관계 편입 메소드==>
+     * 양방향 연관관계가 있을 경우 다 해줘야 함
+     * 양 사이드를 원자적으로 한 코드로 해주는 메소드
+     * 연관의 주인은 설정은 핵심적으로 Control하는 Entity에다가
+     */
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
 
     // END LINE
 }

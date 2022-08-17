@@ -30,7 +30,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     /**
      *     order 테이블에 있는 Member 필드에 의해 mapping한다
-     *     '나는 Mappiㄷng된 거울인 뿐이다.' 라는 의미를 가진다
+     *     '나는 Mapping된 거울인 뿐이다.' 라는 의미를 가진다
      *     그래서 지금 이 친구를 바꾼다고 order 테이블의 FK의 값이 바뀌지 않는다
      */
     private List<Order> orders = new ArrayList();
