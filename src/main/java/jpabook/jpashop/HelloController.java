@@ -7,6 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HelloController {
 
+    /**
+     * Test Module HelloController
+     * Connect with HTML Resource
+     * -
+     * @param model
+     * @return
+     */
+
     @GetMapping("hello")
     public String hello(Model model) {
         model.addAttribute("data", "hello!!");
