@@ -22,7 +22,7 @@ public class Member {
     @Column(name = "member_id") // PK Setting
     private Long id;
 
-    private String username;
+    private String name;
 
     @Embedded
     private Address address;
